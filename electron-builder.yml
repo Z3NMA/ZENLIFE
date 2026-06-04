@@ -1,5 +1,5 @@
 appId: 'jamtycoon'
-productName: '잼타이쿤'
+productName: '냥타이쿤'
 artifactName: '${productName}-setup-${version}.${ext}'
 
 copyright: 'Copyright © 2024-2026 Z3NMA'
@@ -41,8 +41,8 @@ linux:
   target: 'AppImage'
   maintainer: 'Z3NMA'
   vendor: 'Z3NMA'
-  synopsis: '잼타이쿤 런처'
-  description: '잼타이쿤 전용 런처입니다. 모든 모드, 설정 및 업데이트가 자동으로 관리됩니다.'
+  synopsis: '냥타이쿤 런처'
+  description: '냥타이쿤 전용 런처입니다. 모든 모드, 설정 및 업데이트가 자동으로 관리됩니다.'
   category: 'Game'
 
 

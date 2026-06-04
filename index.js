@@ -149,8 +149,15 @@ ipcMain.on(MSFT_OPCODE.OPEN_LOGIN, (ipcEvent, ...arguments_) => {
             let queryMap = {}
 
             queries.forEach(query => {
-                const [name, value] = query.split('=')
-                queryMap[name] = decodeURI(value)
+                if (!query) {
+                    return
+                }
+                const eq = query.indexOf('=')
+                if (eq === -1) {
+                    return
+                }
+                const name = query.substring(0, eq)
+                queryMap[name] = decodeURIComponent(query.substring(eq + 1))
             })
 
             ipcEvent.reply(MSFT_OPCODE.REPLY_LOGIN, MSFT_REPLY_TYPE.SUCCESS, queryMap, msftAuthViewSuccess)

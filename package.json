@@ -1,9 +1,9 @@
 {
   "name": "jamtycoon-launcher",
   "version": "2.2.1",
-  "productName": "잼타이쿤 런처",
-  "description": "잼타이쿤 서버 런처",
-  "author": "jamtycoon",
+  "productName": "냥타이쿤 런처",
+  "description": "냥타이쿤 서버 런처",
+  "author": "Z3NMA",
   "license": "UNLICENSED",
   "homepage": "https://discord.gg/korplayground",
   "bugs": {
