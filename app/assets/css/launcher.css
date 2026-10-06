@@ -63,8 +63,14 @@ body, button {
     z-index: 100;
     display: flex;
     flex-direction: column;
-    transition: background-color 1s ease;
-    /*background-color: rgba(0, 0, 0, 0.5);*/
+    height: 32px;
+    box-sizing: border-box;
+    background:
+        linear-gradient(180deg, rgba(11, 22, 49, 0.72) 0%, rgba(5, 10, 24, 0.48) 100%);
+    border-bottom: 1px solid rgba(167, 207, 255, 0.14);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 8px 28px rgba(0, 0, 0, 0.16);
+    backdrop-filter: blur(12px);
+    transition: background-color 1s ease, opacity 0.35s ease;
     -webkit-user-select: none;
 }
 
@@ -78,7 +84,7 @@ body, button {
 /* Flexbox to wrap the main frame content. */
 #frameMain {
     display: flex;
-    height: 20px
+    height: 30px;
 }
 
 /* Undraggable region on the left and right of the frame. */
@@ -91,6 +97,7 @@ body, button {
 #frameContentWin {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
     -webkit-app-region: drag;
 }
@@ -106,24 +113,32 @@ body, button {
 
 /* Frame logo (windows only). */
 #frameTitleDock {
-    padding: 0px 10px;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0px 14px;
 }
 #frameTitleText {
-    font-size: 14px;
+    font-size: 11px;
     font-family: 'Avenir Medium';
-    letter-spacing: 0.5px;
+    letter-spacing: 2.6px;
+    line-height: 1;
+    color: rgba(237, 246, 255, 0.82);
+    text-shadow: 0 0 10px rgba(137, 188, 255, 0.28);
 }
 
 /* Windows frame button dock. */
 #frameButtonDockWin {
     -webkit-app-region: no-drag !important;
     position: relative;
+    display: flex;
+    align-items: stretch;
     top: -2px;
     right: -2px;
-    height: 22px;
+    height: 32px;
 }
 #frameButtonDockWin > .frameButton:not(:first-child) {
-    margin-left: -4px;
+    margin-left: 0px;
 }
 
 /* Darwin frame button dock: NaN; */
@@ -138,16 +153,19 @@ body, button {
 .frameButton {
     background: none;
     border: none;
-    height: 22px;
-    width: 39px;
+    height: 32px;
+    width: 42px;
     cursor: pointer;
+    opacity: 0.78;
+    transition: background-color 0.18s ease, opacity 0.18s ease;
 }
 .frameButton:hover,
 .frameButton:focus {
-    background: rgba(189, 189, 189, 0.43);
+    background: rgba(151, 190, 255, 0.16);
+    opacity: 1;
 }
 .frameButton:active {
-    background: rgba(156, 156, 156, 0.43);
+    background: rgba(151, 190, 255, 0.24);
 }
 .frameButton:focus {
     outline: 0px;
@@ -156,10 +174,10 @@ body, button {
 /* Close button is red. */
 #frameButton_close:hover,
 #frameButton_close:focus {
-    background: rgba(255, 53, 53, 0.61) !important;
+    background: rgba(255, 86, 86, 0.56) !important;
 }
 #frameButton_close:active {
-    background: rgba(235, 0, 0, 0.61) !important;
+    background: rgba(235, 0, 0, 0.58) !important;
 }
 
 /* Darwin Frame Button Styles. */
@@ -2489,9 +2507,11 @@ input:checked + .toggleSwitchSlider:before {
     align-items: stretch;
     justify-content: space-between;
     box-sizing: border-box;
-    padding: 0 clamp(32px, 7vw, 96px);
-    gap: clamp(32px, 6vw, 120px);
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+    padding: 0 clamp(56px, 7vw, 96px);
+    gap: clamp(34px, 6vw, 120px);
+    background:
+        radial-gradient(ellipse at 80% 58%, rgba(126, 174, 255, 0.10), transparent 36%),
+        linear-gradient(to top, rgba(2, 6, 17, 0.82), rgba(2, 6, 17, 0.24) 62%, rgba(2, 6, 17, 0));
 }
 #landingContainer > #lower > #left {
     position: relative;
@@ -2508,6 +2528,7 @@ input:checked + .toggleSwitchSlider:before {
     position: relative;
     top: 25px;
     display: inline-flex;
+    align-items: center;
     line-height: 24px;
     left: 0;
 }
@@ -2523,107 +2544,22 @@ input:checked + .toggleSwitchSlider:before {
     justify-content: flex-end;
 }
 
+#landingContainer > #lower .bot_wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    background: none;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+}
+
 /*******************************************************************************
  *                                                                             *
  * Landing View (Top Styles)                                                   *
  *                                                                             *
  ******************************************************************************/
-
-/* * *
-* Landing View (Top Styles) | Left Content
-* * */
-
-/* Logo image. */
-#image_seal {
-    height: 70px;
-    width: auto;
-    position: relative;
-    border: 2px solid white;
-    box-sizing: border-box;
-    border-radius: 50%;
-}
-
-/* Logo container styles. */
-#image_seal_container {
-    position: relative;
-    height: 70px;
-    width: 70px;
-    border-radius: 50%;
-    margin-top: 50px;
-}
-
-/* Logo container styles w/ update. */
-#image_seal_container[update]{
-    cursor: pointer
-}
-#image_seal_container[update]:before,
-#image_seal_container[update]:after {
-    cursor: pointer;
-    position: absolute;
-    content: '';
-    height: 100%;
-    width: 100%;
-    top: 0%;
-    left: 0%;
-    border-radius: 50%;
-    box-shadow: 0 0 15px #43c628;
-    animation: glow-grow 4s ease-out infinite;
-    background: rgba(0, 0, 0, 0.15);
-}
-#image_seal_container[update]:before {
-    animation-delay: 2s;
-}
-
-/* Update available tooltip styles. */
-#updateAvailableTooltip {
-    cursor: pointer;
-    visibility: hidden;
-    opacity: 0;
-    width: 100px;
-    height: 15px;
-    background-color: rgb(0, 0, 0);
-    color: #fff;
-    text-align: center;
-    border-radius: 4px;
-    padding: 2px;
-    position: absolute;
-    z-index: 1;
-    top: 115%;
-    left: -17.5px;
-    font-family: 'Avenir Medium';
-    font-size: 12px;
-    transition: visibility 0s linear 0.25s, opacity 0.25s ease;
-}
-#updateAvailableTooltip::after {
-    content: " ";
-    position: absolute;
-    left: 50%;
-    bottom: 100%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent transparent rgb(0, 0, 0) transparent;
-}
-#image_seal_container[update]:hover #updateAvailableTooltip {
-    visibility: visible;
-    opacity: 1;
-    transition-delay: 0s;
-}
-
-/* Update available animation. */
-@keyframes glow-grow {
-    0% {
-        opacity: 0;
-        transform: scale(1);
-    }
-    80% {
-        opacity: 1;
-    }
-    100% {
-        transform: scale(1.5);
-        opacity: 0;
-    }
-}
 
 /* * *
 * Landing View (Bottom Styles) | Right Content
@@ -2635,28 +2571,44 @@ input:checked + .toggleSwitchSlider:before {
     flex-direction: column;
     position: relative;
     top: 50px;
-    align-items: flex-start;
+    align-items: center;
     height: calc(100% - 50px);
+    width: 100%;
 }
 
 /* Right hand user content container. */
 #user_content {
     display: flex;
+    flex-direction: column-reverse;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
     position: relative;
+    width: 96px;
+    padding: 8px 8px 10px;
+    gap: 7px;
+    border: 1px solid rgba(213, 229, 255, 0.26);
+    border-radius: 8px;
+    background: linear-gradient(180deg, rgba(12, 24, 54, 0.44), rgba(4, 9, 24, 0.34));
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.10),
+        0 14px 28px rgba(0, 0, 0, 0.26),
+        0 0 24px rgba(121, 176, 255, 0.08);
+    backdrop-filter: blur(14px);
 }
 
 /* User profile avatar container. */
 #avatarContainer {
     border-radius: 50%;
-    border: 2px solid #cad7e1;
+    border: 2px solid rgba(222, 238, 255, 0.92);
     box-sizing: border-box;
-    background: rgba(1, 2, 1, 0.5);
-    height: 70px;
-    width: 70px;
-    box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+    background: rgba(5, 10, 24, 0.62);
+    height: 68px;
+    width: 68px;
+    box-shadow:
+        inset 0 0 0 1px rgba(124, 180, 255, 0.20),
+        0px 0px 18px rgba(169, 205, 255, 0.18),
+        0px 12px 24px rgba(0, 0, 0, 0.32);
     overflow: hidden;
     position: relative;
     background-position: center;
@@ -2674,8 +2626,9 @@ input:checked + .toggleSwitchSlider:before {
     align-items: center;
     transition: 0.25s ease;
     font-weight: bold;
-    letter-spacing: 2px;
-    background-color: rgba(0, 0, 0, 0.35);
+    letter-spacing: 1px;
+    font-size: 10px;
+    background-color: rgba(4, 10, 24, 0.62);
     -webkit-user-select: none;
     border: none;
     cursor: pointer;
@@ -2688,37 +2641,52 @@ input:checked + .toggleSwitchSlider:before {
     opacity: 1;
 }
 #avatarOverlay:active {
-    background-color: rgba(0, 0, 0, 0.45);
+    background-color: rgba(18, 34, 72, 0.72);
 }
 
 /* User profile name text. */
 #user_text {
-    font-size: 14px;
-    min-width: 155px;
+    font-size: 12px;
+    width: 100%;
+    min-width: 0;
     font-weight: 900;
-    letter-spacing: 1px;
-    text-shadow: 0px 0px 20px black;
-    position: absolute;
-    right: 95px;
-    text-align: right;
+    letter-spacing: 1.2px;
+    line-height: 16px;
+    color: rgba(235, 244, 255, 0.94);
+    text-shadow: 0px 0px 16px rgba(128, 184, 255, 0.42), 0 2px 8px black;
+    position: static;
+    right: auto;
+    text-align: center;
     -webkit-user-select: initial;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 /* Social media icon content container. */
 #mediaContent {
     position: relative;
     display: flex;
-    flex-direction: column;
-    margin-top: 25px;
-    height: calc(100% - 95px);
-    width: 70px;
+    flex-direction: row;
+    margin-top: 10px;
+    height: 38px;
+    width: auto;
     align-items: center;
+    justify-content: center;
+    padding: 3px 5px;
+    border: 1px solid rgba(196, 222, 255, 0.18);
+    border-radius: 8px;
+    background: linear-gradient(180deg, rgba(9, 18, 42, 0.42), rgba(3, 7, 18, 0.30));
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        0 10px 24px rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(12px);
 }
 
 /* Social Media Icon division containers. */
 #internalMedia, #externalMedia {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 /* Container object which wraps an icon to ensure fluid transitions. */
@@ -2726,35 +2694,49 @@ input:checked + .toggleSwitchSlider:before {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 27px;
+    height: 32px;
+    width: 32px;
 }
 
 /* Divider bar between the external and internal icons. */
 .mediaDivider {
-    height: 1px;
-    width: 14px;
-    background: rgb(255, 255, 255);
-    margin: 10px 0px;
+    height: 18px;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(223, 239, 255, 0.55), transparent);
+    margin: 0px 4px;
 }
 
 /* Social media icon shared styles. */
 .mediaSVG {
-    fill: #ffffff;
-    height: 12px;
-    transition: 0.25s ease;
+    fill: rgba(238, 246, 255, 0.92);
+    height: 14px;
+    transition: transform 0.22s ease, fill 0.22s ease, filter 0.22s ease, stroke 0.22s ease;
     cursor: pointer;
-    height: 12px;
-    width: 25px;
+    width: 18px;
+    filter: drop-shadow(0 0 8px rgba(110, 170, 255, 0.18));
 }
 .mediaSVG:hover,
 .mediaURL:focus .mediaSVG,
 .mediaSVG:active {
-    height: 20px;
+    fill: #ffffff;
+    transform: translateY(-1px) scale(1.12);
+    filter: drop-shadow(0 0 10px rgba(138, 190, 255, 0.62));
 }
 
 /* Social media URL shared styles. */
 .mediaURL {
     outline: none;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 7px;
+    transition: background-color 0.22s ease;
+}
+.mediaURL:hover,
+.mediaURL:focus {
+    background-color: rgba(140, 185, 255, 0.14);
 }
 
 /* Internal media button shared styles. */
@@ -2764,7 +2746,16 @@ input:checked + .toggleSwitchSlider:before {
     padding: 0px;
     display: flex;
     align-items: center;
+    justify-content: center;
     outline: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 7px;
+    transition: background-color 0.22s ease;
+}
+.mediaButton:hover,
+.mediaButton:focus {
+    background-color: rgba(140, 185, 255, 0.14);
 }
 
 #settingsMediaContainer {
@@ -2773,13 +2764,15 @@ input:checked + .toggleSwitchSlider:before {
 
 /* Settings icon colors. */
 #settingsSVG {
-    stroke: #ffffff;
+    stroke: rgba(238, 246, 255, 0.92);
     height: 15px;
 }
 .mediaButton:hover #settingsSVG,
 .mediaButton:focus #settingsSVG,
 .mediaButton:active #settingsSVG {
-    height: 23px;
+    stroke: #ffffff;
+    transform: translateY(-1px) scale(1.12);
+    filter: drop-shadow(0 0 10px rgba(138, 190, 255, 0.62));
 }
 
 /* Settings tooltip styles. */
@@ -2788,14 +2781,15 @@ input:checked + .toggleSwitchSlider:before {
     opacity: 0;
     width: 75px;
     height: 20px;
-    background-color: rgba(0, 0, 0, 0.75);
+    background-color: rgba(4, 10, 24, 0.86);
     text-align: center;
     border-radius: 4px;
     position: absolute;
     z-index: 1;
-    right: 130%;
+    right: calc(100% + 10px);
     font-size: 12px;
     line-height: 20px;
+    border: 1px solid rgba(196, 222, 255, 0.18);
     transition: visibility 0s linear 0.25s, opacity 0.25s ease;
 }
 #settingsTooltip::after {
@@ -2806,7 +2800,7 @@ input:checked + .toggleSwitchSlider:before {
     margin-top: -5px;
     border-width: 5px;
     border-style: solid;
-    border-color: transparent transparent transparent rgba(0, 0, 0, 0.75);
+    border-color: transparent transparent transparent rgba(4, 10, 24, 0.86);
 }
 .mediaButton:hover #settingsTooltip,
 .mediaButton:focus #settingsTooltip,
@@ -2824,19 +2818,21 @@ input:checked + .toggleSwitchSlider:before {
 
 /* Style for a general label on the bottom of the landing view. */
 .bot_label {
-    font-size: 11px;
-    letter-spacing: 1px;
+    font-size: 10px;
+    letter-spacing: 1.1px;
     font-weight: bold;
-    text-shadow: 0px 0px 0px #bebcbb;
+    line-height: 1;
+    color: rgba(239, 246, 255, 0.92);
+    text-shadow: 0px 0px 12px rgba(126, 184, 255, 0.34);
 }
 
 /* Divider used on the bottom of the landing view. */
 .bot_divider {
-    height: 25px;
-    width: 2px;
-    background: rgba(107, 105, 105, 0.7);
-    margin-left: 20px;
-    margin-right: 20px;
+    height: 28px;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(210, 230, 255, 0.50), transparent);
+    margin-left: 12px;
+    margin-right: 12px;
 }
 
 /* * *
@@ -2846,31 +2842,70 @@ input:checked + .toggleSwitchSlider:before {
 /* Maintains maximum width on the status bar. */
 #server_status_wrapper {
     display: inline-flex;
-    width: 90px;
+    align-items: center;
+    width: auto;
+    height: 32px;
+    box-sizing: border-box;
+    padding: 0px 12px;
+    justify-content: center;
+    gap: 13px;
+    border: 1px solid rgba(200, 225, 255, 0.18);
+    border-radius: 999px;
+    background: linear-gradient(180deg, rgba(9, 18, 42, 0.38), rgba(3, 8, 20, 0.24));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 0 18px rgba(74, 132, 255, 0.08);
+    backdrop-filter: blur(10px);
 }
 
 /* Span which displays the player count of the selected server. */
 #player_count {
-    color: #949494;
+    color: rgba(198, 216, 239, 0.78);
     font-size: 10px;
-    font-weight: 900;
-    text-shadow: 0px 0px 20px #949494;
-    margin-left: 10px;
+    font-weight: bold;
+    letter-spacing: 1.1px;
+    line-height: 1;
+    text-shadow: 0px 0px 14px rgba(151, 190, 255, 0.22);
+    min-width: 43px;
+    margin-left: 0px;
+    text-align: center;
+    transform: translate(-1px, -0.5px);
 }
 
 /* Wrapper container for the mojang status bar. */
 #mojangStatusWrapper {
     position: relative;
     display: flex;
+    align-items: center;
+    height: 32px;
+    box-sizing: border-box;
+    padding: 0px 12px;
+    justify-content: center;
+    border: 1px solid rgba(200, 225, 255, 0.18);
+    border-radius: 999px;
+    background: linear-gradient(180deg, rgba(9, 18, 42, 0.38), rgba(3, 8, 20, 0.24));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 0 18px rgba(74, 132, 255, 0.08);
+    backdrop-filter: blur(10px);
+    gap: 12px;
     cursor: pointer;
+}
+#mojangStatusWrapper .bot_label {
+    transform: translateY(1.5px);
 }
 
 /* Icon which displays the status of the mojang services. */
 #mojang_status_icon {
-    font-size: 30px;
+    display: inline-flex;
+    width: 7px;
+    height: 7px;
+    flex: 0 0 7px;
+    border-radius: 50%;
+    background-color: currentColor;
+    font-size: 0px;
     color: #848484;
-    margin-left: 15px;
+    margin-left: 0px;
     font-family: 'sans-serif';
+    line-height: 0;
+    box-shadow: 0 0 8px currentColor, 0 0 14px rgba(170, 214, 255, 0.12);
+    transform: translateY(0.5px);
 }
 
 /* Tooltip which displays more details about the mojang statuses. */
@@ -2878,12 +2913,12 @@ input:checked + .toggleSwitchSlider:before {
     position: absolute;
     visibility: hidden;
     opacity: 0;
-    width: 145px;
+    width: 210px;
     min-height: 150px;
-    background-color: rgba(0, 0, 0, 0.75);
+    background-color: rgba(4, 10, 24, 0.92);
     color: #fff;
-    border-radius: 4px;
-    padding: 5px 10px;
+    border-radius: 8px;
+    padding: 8px 10px;
     z-index: 1;
     font-family: 'Avenir Medium';
     font-size: 12px;
@@ -2891,7 +2926,8 @@ input:checked + .toggleSwitchSlider:before {
     bottom: calc(100% + 15px);
     transform: translateX(-50%);
     margin-left: 50%;
-    box-shadow: 0px 0px 20px rgb(0, 0, 0);
+    border: 1px solid rgba(196, 222, 255, 0.20);
+    box-shadow: 0px 14px 30px rgba(0, 0, 0, 0.38), 0 0 20px rgba(91, 148, 255, 0.12);
     cursor: default;
 }
 #mojangStatusTooltip:after {
@@ -2902,7 +2938,7 @@ input:checked + .toggleSwitchSlider:before {
     margin-left: -5px;
     border-width: 5px;
     border-style: solid;
-    border-color: rgba(0, 0, 0, 0.75) transparent transparent transparent;
+    border-color: rgba(4, 10, 24, 0.92) transparent transparent transparent;
 }
 #mojangStatusWrapper:hover #mojangStatusTooltip {
     visibility: visible;
@@ -2922,43 +2958,53 @@ input:checked + .toggleSwitchSlider:before {
 #mojangStatusNEContainer {
     display: flex;
     align-items: center;
+    gap: 8px;
     margin: 10px 0px;
 }
 
 /* White bar which surrounds the non essential service title. */
 .mojangStatusNEBar {
     height: 1px;
-    width: 100%;
-    background: white;
+    flex: 1;
+    background: rgba(210, 230, 255, 0.45);
 }
 
 /* Non essential service title text. */
 #mojangStatusNETitle {
     font-size: 10px;
-    padding: 0px 3px;
+    flex: 0 0 auto;
+    padding: 0px;
     text-align: center;
     letter-spacing: 1px;
+    white-space: nowrap;
 }
 
 /* Wrapper container for mojang service information. */
 .mojangStatusContainer {
     display: flex;
+    align-items: flex-start;
+    gap: 8px;
 }
 
 /* Displays the name of the mojang service. */
 .mojangStatusName {
-    width: 100%;
+    flex: 1;
+    min-width: 0;
     font-size: 10px;
     letter-spacing: 1px;
-    line-height: 12px;
-    padding: 6px 0px;
+    line-height: 13px;
+    padding: 5px 0px;
+    overflow-wrap: normal;
+    word-break: normal;
 }
 
 /* Displays the status of the mojang service. */
 .mojangStatusIcon {
-    margin-right: 10px;
+    flex: 0 0 auto;
+    margin-right: 0px;
     font-size: 18.5px;
     color: #848484;
+    line-height: 20px;
 }
 
 /* * *
@@ -2968,33 +3014,59 @@ input:checked + .toggleSwitchSlider:before {
 /* Main launch content container. */
 #landingContainer > #lower > #right #launch_content {
     position: relative;
-    top: 25px;
+    top: 21px;
     display: inline-flex;
+    align-items: center;
 }
 
 /* The launch button. */
 #launch_button {
+    position: relative;
     background: none;
     border: none;
+    border-radius: 0px;
     cursor: pointer;
     font-weight: 900;
     letter-spacing: 2px;
-    text-shadow: 0px 0px 0px #bebcbb;
+    text-shadow: 0px 0px 0px #bebcbb, 0 2px 10px rgba(0, 0, 0, 0.42);
     font-size: 22px;
-    padding: 0px;
-    transition: 0.25s ease;
+    line-height: 30px;
+    height: 34px;
+    padding: 0px 2px 4px;
+    box-shadow: none;
+    transition: color 0.25s ease, text-shadow 0.25s ease, transform 0.25s ease;
     outline: none;
+}
+#launch_button::after {
+    content: "";
+    position: absolute;
+    left: 4px;
+    right: 4px;
+    bottom: 0px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(225, 240, 255, 0.58), transparent);
+    opacity: 0;
+    transform: scaleX(0.64);
+    transition: opacity 0.25s ease, transform 0.25s ease;
 }
 #launch_button:hover,
 #launch_button:focus {
-    text-shadow: 0px 0px 20px #fff, 0px 0px 20px #fff;
+    text-shadow: 0px 0px 18px #fff, 0px 0px 22px rgba(132, 188, 255, 0.70);
+    transform: translateY(-1px);
+}
+#launch_button:hover::after,
+#launch_button:focus::after {
+    opacity: 1;
+    transform: scaleX(1);
 }
 #launch_button:active {
     color: #c7c7c7;
-    text-shadow: 0px 0px 20px #c7c7c7, 0px 0px 20px #c7c7c7;
+    transform: translateY(0px);
+    text-shadow: 0px 0px 16px #c7c7c7, 0px 0px 18px rgba(132, 188, 255, 0.42);
 }
 #launch_button:disabled {
     color: #c7c7c7;
+    opacity: 0.58;
     cursor: default;
     pointer-events: none;
 }
@@ -3004,6 +3076,7 @@ input:checked + .toggleSwitchSlider:before {
     position: relative;
     top: 25px;
     display: none;
+    align-items: center;
 }
  
 /* Left side of launch details container, displays percentage and a divider. */
@@ -3015,8 +3088,9 @@ input:checked + .toggleSwitchSlider:before {
 #launch_progress_label {
     font-weight: 900;
     letter-spacing: 1px;
-    text-shadow: 0px 0px 0px #bebcbb;
-    font-size: 20px;
+    color: rgba(238, 246, 255, 0.92);
+    text-shadow: 0px 0px 14px rgba(126, 184, 255, 0.34);
+    font-size: 18px;
     min-width: 53.21px;
     max-width: 53.21px;
     text-align: right;
@@ -3033,37 +3107,45 @@ input:checked + .toggleSwitchSlider:before {
 #server_selection_button {
     background: none;
     border: none;
+    border-radius: 0px;
     outline: none;
     cursor: pointer;
     line-height: 24px;
+    min-height: 0px;
     padding: 0px;
-    transition: 0.25s ease;
+    color: rgba(239, 246, 255, 0.92);
+    transition: text-shadow 0.25s ease, color 0.25s ease;
 }
 #server_selection_button:hover,
 #server_selection_button:focus {
-    text-shadow: 0px 0px 20px #fff, 0px 0px 20px #fff, 0px 0px 20px #fff;
+    text-shadow: 0px 0px 16px #fff, 0px 0px 18px rgba(132, 188, 255, 0.58);
 }
 #server_selection_button:active {
-    color: #c7c7c7;
-    text-shadow: 0px 0px 20px #c7c7c7, 0px 0px 20px #c7c7c7, 0px 0px 20px #c7c7c7;
+    color: #d6e4f7;
+    text-shadow: 0px 0px 16px #d6e4f7, 0px 0px 18px rgba(132, 188, 255, 0.48);
 }
 
 /* Progress bar styles. */
 #launch_progress[value] {
     height: 3px;
-    width: 265px;
+    width: 232px;
     -webkit-appearance: none;
 }
 #launch_progress[value]::-webkit-progress-bar {
-    background-color: transparent;
+    background-color: rgba(210, 230, 255, 0.18);
+    border-radius: 999px;
 }
 #launch_progress[value]::-webkit-progress-value {
-    background-color: #fff;
+    background:
+        linear-gradient(90deg, rgba(126, 184, 255, 0.92), rgba(255, 255, 255, 0.96));
+    border-radius: 999px;
+    box-shadow: 0 0 10px rgba(126, 184, 255, 0.50);
 }
 
 /* Span which displays information about the status of the launch process. */
 #launch_details_text {
     font-size: 11px;
+    color: rgba(221, 234, 255, 0.74);
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -3083,12 +3165,12 @@ input:checked + .toggleSwitchSlider:before {
 #overlayContainer {
     position: absolute;
     z-index: 500;
-    top: 22px;
+    top: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: calc(100% - 22px);
+    height: calc(100% - 32px);
     background: rgba(0, 0, 0, 0.50);
 }
 
@@ -3238,6 +3320,10 @@ input:checked + .toggleSwitchSlider:before {
     padding: 0px 5px;
     overflow-y: scroll;
 }
+
+#serverSelectListScrollable {
+    padding: 0px 10px;
+}
 #serverSelectListScrollable::-webkit-scrollbar,
 #accountSelectListScrollable::-webkit-scrollbar {
     width: 2px;
@@ -3255,12 +3341,13 @@ input:checked + .toggleSwitchSlider:before {
 /* Content container for a server listing. */
 .serverListing {
     border: none;
-    padding: 0px;
-    width: 375px;
-    min-height: 60px;
+    padding: 9px 12px;
+    width: min(520px, calc(100vw - 72px));
+    min-height: 88px;
+    box-sizing: border-box;
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     opacity: 0.6;
     transition: 0.25s ease;
     cursor: pointer;
@@ -3325,10 +3412,11 @@ input:checked + .toggleSwitchSlider:before {
 
 /* Server listing image. */
 .serverListingImg {
-    margin: 0px 10px 0px 5px;
+    flex: 0 0 auto;
+    margin: 0px 14px 0px 0px;
     border: 1px solid #fff;
-    height: 50px;
-    width: 50px;
+    height: 58px;
+    width: 58px;
 }
 
 /* Content container for the server listing's details. */
@@ -3336,22 +3424,28 @@ input:checked + .toggleSwitchSlider:before {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: space-between;
-    height: 50px;
+    justify-content: flex-start;
+    gap: 4px;
+    min-height: 58px;
+    min-width: 0;
+    flex: 1;
 }
 
 /* The name of the server listing. */
 .serverListingName {
-    font-size: 14px;
+    font-size: 15px;
     font-weight: bold;
+    line-height: 17px;
 }
 
 /* Description for the server listing. */
 .serverListingDescription {
-    font-size: 10px;
-    line-height: 10px;
+    display: block;
+    font-size: 11px;
+    line-height: 14px;
     font-weight: bold;
     text-align: left;
+    overflow-wrap: anywhere;
 }
 
 /* Content container for the server listing's information. */
@@ -3359,6 +3453,7 @@ input:checked + .toggleSwitchSlider:before {
     width: 100%;
     display: flex;
     justify-content: flex-start;
+    margin-top: 2px;
 }
 
 /* The minecraft version of the server listing. */
@@ -3497,7 +3592,7 @@ input:checked + .toggleSwitchSlider:before {
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: calc(100% - 22px);
+    height: calc(100% - 32px);
 }
 
 /* Loading content container. */

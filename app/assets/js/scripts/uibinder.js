@@ -68,7 +68,7 @@ async function showMainUI(data){
     updateSelectedServer(data.getServerById(ConfigManager.getSelectedServer()))
     refreshServerStatus()
     // 스플래시 화면이 있으므로 바로 화면 표시
-    document.getElementById('frameBar').style.backgroundColor = 'rgba(0, 0, 0, 0.5)'
+    document.getElementById('frameBar').classList.add('frameReady')
     document.body.style.backgroundImage = `url('assets/images/backgrounds/${document.body.getAttribute('bkid')}.jpg')`
     $('#main').show()
     $('#loadingContainer').hide() // 로딩 컨테이너 숨김

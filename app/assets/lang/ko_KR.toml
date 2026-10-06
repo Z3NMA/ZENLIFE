@@ -207,8 +207,8 @@ checkConsoleForDetails = "자세한 내용은 콘솔 (CTRL + Shift + i)을 확�
 
 [js.landing.discord]
 loading = "게임 로딩 중.."
-joining = "냥타이쿤에 접속 중!"
-joined = "냥타이쿤에서 플레이 중!"
+joining = "루나테일에 접속 중!"
+joined = "루나테일에서 플레이 중!"
 
 [js.overlay]
 dismiss = "닫기"

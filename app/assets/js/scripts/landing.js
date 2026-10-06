@@ -30,6 +30,31 @@ const {
 const DiscordWrapper          = require('./assets/js/discordwrapper')
 const ProcessBuilder          = require('./assets/js/processbuilder')
 
+const MOJANG_STATUS_DISPLAY_NAMES = {
+    'mojang-multiplayer-session-service': '멀티플레이 세션 서비스',
+    'microsoft-o-auth-server': 'Microsoft OAuth 서버',
+    'xbox-live-auth-server': 'Xbox Live 인증 서버',
+    'xbox-live-gatekeeper': 'Xbox Live 게이트키퍼',
+    'microsoft-minecraft-api': 'Microsoft 계정용 Minecraft API',
+    'minecraft-skins': 'Minecraft 스킨',
+    'mojang-s-public-api': '공개 API',
+    'mojang-accounts-website': 'Mojang 계정 웹사이트',
+    'microsoft-minecraft-profile': 'Microsoft 계정용 Minecraft 프로필',
+    'Multiplayer Session Service': '멀티플레이 세션 서비스',
+    'Microsoft OAuth Server': 'Microsoft OAuth 서버',
+    'Xbox Live Auth Server': 'Xbox Live 인증 서버',
+    'Xbox Live Gatekeeper': 'Xbox Live 게이트키퍼',
+    'Minecraft API for Microsoft Accounts': 'Microsoft 계정용 Minecraft API',
+    'Minecraft Skins': 'Minecraft 스킨',
+    'Public API': '공개 API',
+    'Mojang Accounts Website': 'Mojang 계정 웹사이트',
+    'Minecraft Profile for Microsoft Accounts': 'Microsoft 계정용 Minecraft 프로필'
+}
+
+function getMojangStatusDisplayName(service) {
+    return MOJANG_STATUS_DISPLAY_NAMES[service.service] || MOJANG_STATUS_DISPLAY_NAMES[service.name] || service.name
+}
+
 // Launch Elements
 const launch_content          = document.getElementById('launch_content')
 const launch_details          = document.getElementById('launch_details')
@@ -200,7 +225,7 @@ const refreshMojangStatuses = async function(){
 
         const tooltipHTML = `<div class="mojangStatusContainer">
             <span class="mojangStatusIcon" style="color: ${MojangRestAPI.statusToHex(service.status)};">&#8226;</span>
-            <span class="mojangStatusName">${service.name}</span>
+            <span class="mojangStatusName">${getMojangStatusDisplayName(service)}</span>
         </div>`
         if(service.essential){
             tooltipEssentialHTML += tooltipHTML

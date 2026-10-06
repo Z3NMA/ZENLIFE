@@ -1642,12 +1642,12 @@ function bindLanguageSelection(){
             // Close dropdown
             closeSettingsSelect()
             
-                         // Show restart notification
-             setOverlayContent(
-                 Lang.queryJS ? Lang.queryJS('settings.languageChangedTitle') || '언어 변경됨' : '언어 변경됨',
-                 Lang.queryJS ? Lang.queryJS('settings.languageChangedDesc') || '언어 변경사항을 적용하려면 런처를 재시작해야 합니다.' : '언어 변경사항을 적용하려면 런처를 재시작해야 합니다.',
-                 '확인'
-             )
+            // Show restart notification
+            setOverlayContent(
+                Lang.queryJS ? Lang.queryJS('settings.languageChangedTitle') || '언어 변경됨' : '언어 변경됨',
+                Lang.queryJS ? Lang.queryJS('settings.languageChangedDesc') || '언어 변경사항을 적용하려면 런처를 재시작해야 합니다.' : '언어 변경사항을 적용하려면 런처를 재시작해야 합니다.',
+                '확인'
+            )
             setOverlayHandler(() => {
                 toggleOverlay(false)
             })

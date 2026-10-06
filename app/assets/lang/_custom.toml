@@ -1,7 +1,7 @@
 # Custom Language File for Launcher Customizer
 
 [ejs.app]
-title = "냥타이쿤 런처"
+title = "LUNATAIL"
 
 [ejs.landing]
 mediaGitHubURL = "#"
@@ -11,6 +11,6 @@ sourceGithubLink = "#"
 supportLink = "#"
 
 [ejs.welcome]
-welcomeHeader = "냥타이쿤에 오신 것을 환영합니다"
-welcomeDescription = "냥타이쿤은 마인크래프트 기반의 특별한 경험을 제공합니다. 친구들과 함께 모험을 떠나고, 새로운 세계를 탐험하며, 잊지 못할 추억을 만들어보세요. 지금 바로 시작하세요!"
-welcomeDescCTA = "몇 번의 클릭으로 냥타이쿤을 시작할 수 있습니다."
+welcomeHeader = "루나테일에 오신 것을 환영합니다"
+welcomeDescription = "루나테일은 마인크래프트 기반의 특별한 경험을 제공합니다. 친구들과 함께 모험을 떠나고, 새로운 세계를 탐험하며, 잊지 못할 추억을 만들어보세요. 지금 바로 시작하세요!"
+welcomeDescCTA = "몇 번의 클릭으로 루나테일을 시작할 수 있습니다."

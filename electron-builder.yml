@@ -1,5 +1,5 @@
-appId: 'jamtycoon'
-productName: '냥타이쿤'
+appId: 'lunatail'
+productName: '루나테일'
 artifactName: '${productName}-setup-${version}.${ext}'
 
 copyright: 'Copyright © 2024-2026 Z3NMA'
@@ -14,8 +14,8 @@ extraResources:
   - 'libraries'
 
 # Windows Configuration
-win: 
-  target: 
+win:
+  target:
     - target: 'nsis'
       arch: 'x64'
 
@@ -25,6 +25,12 @@ nsis:
   perMachine: false
   allowElevation: true
   allowToChangeInstallationDirectory: true
+  installerIcon: 'installerIcon.ico'
+  uninstallerIcon: 'uninstallerIcon.ico'
+  installerHeader: 'installerHeader.bmp'
+  installerSidebar: 'installerSidebar.bmp'
+  uninstallerSidebar: 'uninstallerSidebar.bmp'
+  uninstallDisplayName: '루나테일 ${version}'
 
 # macOS Configuration
 mac:
@@ -37,12 +43,12 @@ mac:
   category: 'public.app-category.games'
 
 # Linux Configuration
-linux: 
+linux:
   target: 'AppImage'
   maintainer: 'Z3NMA'
   vendor: 'Z3NMA'
-  synopsis: '냥타이쿤 런처'
-  description: '냥타이쿤 전용 런처입니다. 모든 모드, 설정 및 업데이트가 자동으로 관리됩니다.'
+  synopsis: '루나테일 런처'
+  description: '루나테일 전용 런처입니다. 모든 모드, 설정 및 업데이트가 자동으로 관리됩니다.'
   category: 'Game'
 
 
