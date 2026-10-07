@@ -290,15 +290,61 @@ body, button {
 }
 */
 
-#welcomeImageSeal {
-    border-radius: 50%;
-    border: 2px solid #cad7e1;
-    background: rgba(1, 2, 1, 0.5);
-    height: 125px;
-    width: 125px;
-    box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
-    margin-bottom: 5%;
+/* Let the moon-and-castle silhouette stand on its own. */
+#welcomeBrand {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    isolation: isolate;
+    flex-shrink: 0;
+    width: 180px;
+    height: 129px;
     margin-top: 10%;
+    margin-bottom: 5%;
+}
+
+#welcomeBrand::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: -18px -12px;
+    background: radial-gradient(ellipse at center, rgba(63, 121, 244, 0.22) 0%, rgba(45, 101, 224, 0.08) 40%, transparent 70%);
+    filter: blur(10px);
+    pointer-events: none;
+}
+
+#welcomeImageSeal {
+    display: block;
+    width: 160px;
+    height: 160px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 7px rgba(0, 9, 35, 0.55)) drop-shadow(0 0 9px rgba(89, 156, 255, 0.28));
+}
+
+#welcomeBrand::after,
+.welcomeBrandSpark {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    background: #b9dcff;
+    clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%);
+    pointer-events: none;
+}
+
+#welcomeBrand::after {
+    content: '';
+    top: 28px;
+    left: 18px;
+    opacity: 0.65;
+}
+
+.welcomeBrandSpark {
+    right: 17px;
+    bottom: 24px;
+    width: 5px;
+    height: 5px;
+    opacity: 0.4;
 }
 
 #welcomeHeader {
